@@ -1,14 +1,10 @@
-import json
-import os
 import gensim.downloader as api
 
 import joblib
 import numpy as np
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RELATIVE_RESOURCE_DIR = "../resources/product_review_classifier/"
-RESOURCE_DIR = os.path.join(BASE_DIR, RELATIVE_RESOURCE_DIR)
+RELATIVE_RESOURCE_DIR = "./resources/product_review_classifier/"
 
 # Load Pretrained Glove Embedding
 glove_wiki = api.load("glove-wiki-gigaword-50")
@@ -46,29 +42,5 @@ def product_review_get_sentiment(texts: list, method: str):
     if type(texts[0]) is not str:
         raise ValueError("texts is not a string")
 
-    model = joblib.load(RESOURCE_DIR + f"{method}.joblib")
+    model = joblib.load(RELATIVE_RESOURCE_DIR + f"{method}.joblib")
     return get_sentiment_for_review(texts, model)[0]
-
-# @product_review_classifier.route('/productReview/getSentiments', methods=['POST'])
-# def product_review_get_sentiments():
-#     texts_param = request.json.get('texts')
-#
-#     if texts_param is None:
-#         return make_response(jsonify({'error': 'Missing text parameter'}), 400)
-#
-#     if type(texts_param) is not str:
-#         return make_response(jsonify({'error': 'texts is not a string'}), 400)
-#
-#     texts = json.loads(texts_param)
-#
-#     if len(texts) == 0:
-#         return make_response(jsonify({'error': 'texts is empty'}), 400)
-#
-#     if type(texts) is not list:
-#         return make_response(jsonify({'error': 'texts is not a list'}), 400)
-#
-#     if not all(isinstance(element, str) for element in texts):
-#         return make_response(jsonify({'error': 'texts contains non-string elements'}), 400)
-#
-#     model = joblib.load(RESOURCE_DIR + "adaboost.joblib")
-#     return get_sentiment_for_review(texts, model)

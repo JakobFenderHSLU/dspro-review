@@ -1,5 +1,4 @@
 import json
-import os
 import re
 from statistics import mean
 
@@ -23,9 +22,7 @@ NEGATIVE_WORD_WEIGHT = 0.09
 VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RELATIVE_RESOURCE_DIR = "../resources/movie-review-classifier/"
-RESOURCE_DIR = os.path.join(BASE_DIR, RELATIVE_RESOURCE_DIR)
+RELATIVE_RESOURCE_DIR = "./resources/movie-review-classifier/"
 
 classifiers = [
     "BernoulliNB",
@@ -45,17 +42,16 @@ def read_list_from_file(filename):
         return [line.strip() for line in file]
 
 
-TOP_POS_WORDS = read_list_from_file(RESOURCE_DIR + "top_pos_words.txt")
-TOP_NEG_WORDS = read_list_from_file(RESOURCE_DIR + "top_pos_words.txt")
+TOP_POS_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR + "top_pos_words.txt")
+TOP_NEG_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR + "top_pos_words.txt")
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 confidence_dict = {}
-with open(RESOURCE_DIR + "confidence-dictionary.json", 'r') as file:
+with open(RELATIVE_RESOURCE_DIR + "confidence-dictionary.json", 'r') as file:
     confidence_dict = json.load(file)
 
 word_ranking = {}
-with open(RESOURCE_DIR + "word-ranking.json", 'r') as file:
+with open(RELATIVE_RESOURCE_DIR + "word-ranking.json", 'r') as file:
     word_ranking = json.load(file)
 
 
@@ -177,8 +173,8 @@ def movie_review_get_sentiment(texts: list, method: str):
     if method == "custom":
         return get_sentiment_for_review_custom(texts)[0]
     elif method in classifiers:
-        model = joblib.load(RESOURCE_DIR + f"{method}.joblib")
+        model = joblib.load(RELATIVE_RESOURCE_DIR + f"{method}.joblib")
         return get_sentiment_for_review_ootb(texts, model)[0]
     else:
-        model = load_model(RESOURCE_DIR + "sequential-model.keras")
+        model = load_model(RELATIVE_RESOURCE_DIR + "sequential-model.keras")
         return get_sentiment_for_review_nn(texts, model)[0]
