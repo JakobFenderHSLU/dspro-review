@@ -7,7 +7,7 @@ import numpy as np
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RELATIVE_RESOURCE_DIR = "./resources/product_review_classifier/"
+RELATIVE_RESOURCE_DIR = "../resources/product_review_classifier/"
 RESOURCE_DIR = os.path.join(BASE_DIR, RELATIVE_RESOURCE_DIR)
 
 # Load Pretrained Glove Embedding
