@@ -6,3 +6,4 @@ numpy==1.26.2
 
 setuptools~=65.5.1
 streamlit~=1.30.0
+tensorflow~=2.7.0
