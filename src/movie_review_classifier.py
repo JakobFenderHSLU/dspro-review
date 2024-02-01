@@ -10,7 +10,7 @@ from flask import jsonify, make_response, request, Blueprint
 from keras.models import load_model
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-# movie_review_classifier = Blueprint('movie_review_classifier', __name__)
+nltk.download('stopwords')
 
 HTML_TAG_REGEX = r'<[^>]+>'
 NON_ALPHABETIC_CHARS = r'[^a-zA-Z\s]'
