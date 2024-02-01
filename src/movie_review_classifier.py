@@ -7,6 +7,7 @@ import nltk
 import numpy as np
 from keras.models import load_model
 from nltk.sentiment import SentimentIntensityAnalyzer
+import os
 
 nltk.download('stopwords')
 nltk.download('vader_lexicon')
@@ -22,7 +23,8 @@ NEGATIVE_WORD_WEIGHT = 0.09
 VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
-RELATIVE_RESOURCE_DIR = "../resources/movie-review-classifier/"
+RELATIVE_RESOURCE_DIR = "./resources/movie-review-classifier/"
+print(os.listdir(RELATIVE_RESOURCE_DIR))
 
 classifiers = [
     "BernoulliNB",

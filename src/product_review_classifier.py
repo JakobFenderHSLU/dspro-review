@@ -2,9 +2,12 @@ import gensim.downloader as api
 
 import joblib
 import numpy as np
+import os
 
 
-RELATIVE_RESOURCE_DIR = "../resources/product_review_classifier/"
+RELATIVE_RESOURCE_DIR = "./resources/product_review_classifier/"
+print(os.listdir(RELATIVE_RESOURCE_DIR))
+
 
 # Load Pretrained Glove Embedding
 glove_wiki = api.load("glove-wiki-gigaword-50")
