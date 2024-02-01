@@ -1,6 +1,5 @@
 import streamlit as st
-from jakob_fender_api import movie_review_classifier, product_review_classifier
-
+from src import movie_review_classifier, product_review_classifier
 
 """ # Review Sentiment Classifier"""
 """ This project was created by Jakob Fender as part of the course DSPRO-1 at the Lucerne University of Applied Sciences

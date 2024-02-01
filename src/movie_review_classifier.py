@@ -23,7 +23,7 @@ VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RELATIVE_RESOURCE_DIR = "../../resources/movie-review-classifier/"
+RELATIVE_RESOURCE_DIR = "../resources/movie-review-classifier/"
 RESOURCE_DIR = os.path.join(BASE_DIR, RELATIVE_RESOURCE_DIR)
 
 classifiers = [
