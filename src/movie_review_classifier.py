@@ -22,7 +22,7 @@ NEGATIVE_WORD_WEIGHT = 0.09
 VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
-RELATIVE_RESOURCE_DIR = "./resources/movie-review-classifier/"
+RELATIVE_RESOURCE_DIR = "../resources/movie-review-classifier/"
 
 classifiers = [
     "BernoulliNB",

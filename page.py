@@ -8,8 +8,9 @@ is split into two parts:
  
  
 ## Movie Review Classifier
-The first part is a classifier for movie reviews. It uses a dataset of 50'000 movie reviews from IMDB. The classifier is trained on 40'000 reviews and tested on 10'000 reviews.
-It returns a simple positive or negative score for each review. The classifier can be trained with different methods. The following methods are available:
+The first part is a classifier for movie reviews. It uses a dataset of 50'000 movie reviews from IMDB. The classifier 
+is trained on 40'000 reviews and tested on 10'000 reviews.It returns a simple positive or negative score for each 
+review. The classifier can be trained with different methods. The following methods are available:
 - Custom
 - Out of the box
 - Neural Network

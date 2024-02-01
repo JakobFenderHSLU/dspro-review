@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 
 
-RELATIVE_RESOURCE_DIR = "./resources/product_review_classifier/"
+RELATIVE_RESOURCE_DIR = "../resources/product_review_classifier/"
 
 # Load Pretrained Glove Embedding
 glove_wiki = api.load("glove-wiki-gigaword-50")
