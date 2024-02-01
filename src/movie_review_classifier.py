@@ -146,10 +146,6 @@ def get_sentiment_for_review_nn(texts, model):
                 temp.append(word_ranking[word])
         word_ranking_index.append(temp)
 
-    # word_ranking_index = [[word_ranking[word] for word in text_array if -1 < word_ranking[word] < 10000]
-    # for text_array
-    #                       in cleaned_texts_array]
-
     vectorized_data = np.zeros((len(word_ranking_index), VECTOR_SIZE))
     for i, sequence in enumerate(word_ranking_index):
         vectorized_data[i, sequence] = 1
@@ -185,35 +181,3 @@ def movie_review_get_sentiment(texts: list, method: str):
     else:
         model = load_model(RESOURCE_DIR + "sequential-model.keras")
         return get_sentiment_for_review_nn(texts, model)[0]
-
-
-# @movie_review_classifier.route('/movieReviews/getSentiments', methods=['POST'])
-# def movie_review_get_sentiments():
-#     texts_param = request.json.get('texts')
-#     method = request.json.get('method')
-#
-#     if texts_param is None:
-#         return make_response(jsonify({'error': 'Missing text parameter'}), 400)
-#
-#     if type(texts_param) is not str:
-#         return make_response(jsonify({'error': 'texts is not a string'}), 400)
-#
-#     texts = json.loads(texts_param)
-#
-#     if len(texts) == 0:
-#         return make_response(jsonify({'error': 'texts is empty'}), 400)
-#
-#     if type(texts) is not list:
-#         return make_response(jsonify({'error': 'texts is not a list'}), 400)
-#
-#     if not all(isinstance(element, str) for element in texts):
-#         return make_response(jsonify({'error': 'texts contains non-string elements'}), 400)
-#
-#     if method == "custom":
-#         return get_sentiment_for_review_custom(texts)
-#     elif method in classifiers:
-#         model = joblib.load(RESOURCE_DIR + f"{method}.joblib")
-#         return get_sentiment_for_review_ootb(texts, model)
-#     else:
-#         model = load_model(RESOURCE_DIR + "sequential-model.keras")
-#         return get_sentiment_for_review_nn(texts, model)
