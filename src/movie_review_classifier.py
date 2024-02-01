@@ -6,7 +6,6 @@ from statistics import mean
 import joblib
 import nltk
 import numpy as np
-from flask import jsonify, make_response, request, Blueprint
 from keras.models import load_model
 from nltk.sentiment import SentimentIntensityAnalyzer
 
@@ -25,7 +24,7 @@ VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RELATIVE_RESOURCE_DIR = "../resources/movie-review-classifier/"
+RELATIVE_RESOURCE_DIR = "./resources/movie-review-classifier/"
 RESOURCE_DIR = os.path.join(BASE_DIR, RELATIVE_RESOURCE_DIR)
 
 classifiers = [
@@ -170,10 +169,10 @@ def get_sentiment_for_review_nn(texts, model):
 def movie_review_get_sentiment(texts: list, method: str):
 
     if texts[0] is None:
-        return make_response(jsonify({'error': 'Missing text parameter'}), 400)
+        raise ValueError("Missing text parameter")
 
     if type(texts[0]) is not str:
-        return make_response(jsonify({'error': 'texts is not a string'}), 400)
+        raise ValueError("texts is not a string")
 
     if method == "custom":
         return get_sentiment_for_review_custom(texts)[0]
