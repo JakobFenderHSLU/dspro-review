@@ -11,6 +11,8 @@ from keras.models import load_model
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 nltk.download('stopwords')
+nltk.download('vader_lexicon')
+
 
 HTML_TAG_REGEX = r'<[^>]+>'
 NON_ALPHABETIC_CHARS = r'[^a-zA-Z\s]'
