@@ -25,7 +25,9 @@ NEGATIVE_WORD_WEIGHT = 0.09
 VECTOR_SIZE = 10000
 sia = SentimentIntensityAnalyzer()
 
-RELATIVE_RESOURCE_DIR = "./resources/movie-review-classifier/"
+from pathlib import Path
+
+RELATIVE_RESOURCE_DIR = Path("./resources/movie-review-classifier")
 print(os.listdir(RELATIVE_RESOURCE_DIR))
 
 classifiers = [
@@ -46,16 +48,16 @@ def read_list_from_file(filename):
         return [line.strip() for line in file]
 
 
-TOP_POS_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR + "top_pos_words.txt")
-TOP_NEG_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR + "top_pos_words.txt")
+TOP_POS_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR / "top_pos_words.txt")
+TOP_NEG_WORDS = read_list_from_file(RELATIVE_RESOURCE_DIR / "top_pos_words.txt")
 
 
 confidence_dict = {}
-with open(RELATIVE_RESOURCE_DIR + "confidence-dictionary.json", 'r') as file:
+with open(RELATIVE_RESOURCE_DIR / "confidence-dictionary.json", 'r') as file:
     confidence_dict = json.load(file)
 
 word_ranking = {}
-with open(RELATIVE_RESOURCE_DIR + "word-ranking.json", 'r') as file:
+with open(RELATIVE_RESOURCE_DIR / "word-ranking.json", 'r') as file:
     word_ranking = json.load(file)
 
 
@@ -178,10 +180,8 @@ def movie_review_get_sentiment(texts: list, method: str):
         return get_sentiment_for_review_custom(texts)[0]
 
     elif method in classifiers:
-        model = joblib.load(RELATIVE_RESOURCE_DIR + f"{method}.joblib")
+        model = joblib.load(RELATIVE_RESOURCE_DIR / f"{method}.joblib")
         return get_sentiment_for_review_ootb(texts, model)[0]
     else:
-        streamlit.info("Loading Neural Network Model")
-        model = load_model(RELATIVE_RESOURCE_DIR + "sequential-model.keras")
-        streamlit.info("Model loaded")
+        model = load_model(str(RELATIVE_RESOURCE_DIR / "sequential-model.keras"))
         return get_sentiment_for_review_nn(texts, model)[0]
