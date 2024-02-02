@@ -34,8 +34,13 @@ with cols[1]:
 text = st.text_area("Enter a review", "This movie was great!", key="movie")
 
 if st.button("Submit", key="movie_submit"):
-    response = movie_review_classifier.movie_review_get_sentiment([text], method)
-    st.write(response["sentiment"])
+    # catch exception
+    try:
+        response = movie_review_classifier.movie_review_get_sentiment([text], method)
+        st.write(response["sentiment"])
+    except Exception as e:
+        print(e)
+        st.error("An error occurred")
 
 st.write("<br>", unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True)
