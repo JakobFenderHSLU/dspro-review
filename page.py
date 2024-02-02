@@ -40,7 +40,7 @@ if st.button("Submit", key="movie_submit"):
         st.write(response["sentiment"])
     except Exception as e:
         print(e)
-        st.error("An error occurred")
+        st.error("An error occurred " + str(e))
 
 st.write("<br>", unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True)
