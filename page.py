@@ -1,6 +1,8 @@
 import streamlit as st
 from src import movie_review_classifier, product_review_classifier
 
+st.set_page_config(page_title="DSPRO DEMO", page_icon="🎬")
+
 """ # Review Sentiment Classifier"""
 """ This project was created by Jakob Fender as part of the course DSPRO-1 at the Lucerne University of Applied Sciences
  and Arts. The goal of this project is to create a classifier that can predict the sentiment of a review. This project
@@ -25,8 +27,8 @@ with cols[0]:
 
 with cols[1]:
     if method == "Out of the box":
-        options = ["BernoulliNB", "ComplementNB", "MultinomialNB", "KNeighborsClassifier", "DecisionTreeClassifier",
-                   "RandomForestClassifier", "LogisticRegression", "MLPClassifier", "AdaBoostClassifier"]
+        options = ["BernoulliNB", "ComplementNB", "MultinomialNB", "KNeighborsClassifier",
+                   "LogisticRegression", "MLPClassifier"]
         method = st.selectbox("Select a method", options, 0)
 
 text = st.text_area("Enter a review", "This movie was great!", key="movie")
@@ -46,7 +48,7 @@ the large size of the dataset, and computing restraints we can only deploy small
 
 st.write("<br>", unsafe_allow_html=True)
 
-product_options = ["BernoulliNB", "LogisticRegression",  "AdaBoostClassifier"]
+product_options = ["BernoulliNB", "LogisticRegression"]
 product_method = st.selectbox("Select a method", product_options, 0)
 text_product = st.text_area("Enter a review", "would not recommend", key="product")
 

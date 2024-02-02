@@ -6,4 +6,4 @@ tensorflow
 nltk
 numpy
 streamlit
-typing-extensions
+scikit-learn

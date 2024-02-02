@@ -11,6 +11,7 @@ import os
 
 nltk.download('stopwords')
 nltk.download('vader_lexicon')
+nltk.download('punkt')
 
 
 HTML_TAG_REGEX = r'<[^>]+>'
