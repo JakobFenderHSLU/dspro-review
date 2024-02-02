@@ -1,9 +1,9 @@
 Flask
 gensim
-joblib==1.3.2
 keras
 tensorflow
 nltk
 numpy
 streamlit
 scikit-learn
+joblib==1.3.2

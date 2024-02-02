@@ -1,6 +1,8 @@
 import streamlit as st
 from src import movie_review_classifier, product_review_classifier
 
+import os
+
 st.set_page_config(page_title="DSPRO DEMO", page_icon="🎬")
 
 """ # Review Sentiment Classifier"""
@@ -39,8 +41,13 @@ if st.button("Submit", key="movie_submit"):
         response = movie_review_classifier.movie_review_get_sentiment([text], method)
         st.write(response["sentiment"])
     except Exception as e:
+
         print(e)
         st.error("An error occurred " + str(e))
+
+        # print stack trace
+        import traceback
+        st.error(traceback.print_exc())
 
 st.write("<br>", unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True)
