@@ -25,7 +25,7 @@ st.write("<br>", unsafe_allow_html=True)
 cols = st.columns(2)
 
 with cols[0]:
-    method = st.selectbox("Select a method", ["Custom", "Out of the box", "Neural Network"], 0)
+    method = st.selectbox("Select a method", ["custom", "Out of the box", "Neural Network"], 0)
 
 with cols[1]:
     if method == "Out of the box":
@@ -47,7 +47,7 @@ if st.button("Submit", key="movie_submit"):
 
         # print stack trace
         import traceback
-        st.error(traceback.print_exc())
+        traceback.print_exc()
 
 st.write("<br>", unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True)

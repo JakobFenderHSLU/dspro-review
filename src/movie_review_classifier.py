@@ -5,6 +5,7 @@ from statistics import mean
 import joblib
 import nltk
 import numpy as np
+import streamlit
 from keras.models import load_model
 from nltk.sentiment import SentimentIntensityAnalyzer
 import os
@@ -175,6 +176,7 @@ def movie_review_get_sentiment(texts: list, method: str):
 
     if method == "custom":
         return get_sentiment_for_review_custom(texts)[0]
+
     elif method in classifiers:
         model = joblib.load(RELATIVE_RESOURCE_DIR + f"{method}.joblib")
         return get_sentiment_for_review_ootb(texts, model)[0]
