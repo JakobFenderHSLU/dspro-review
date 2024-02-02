@@ -1,6 +1,6 @@
 Flask
 gensim
-keras
+keras==2.15.0
 tensorflow
 nltk
 numpy
