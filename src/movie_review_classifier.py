@@ -181,5 +181,7 @@ def movie_review_get_sentiment(texts: list, method: str):
         model = joblib.load(RELATIVE_RESOURCE_DIR + f"{method}.joblib")
         return get_sentiment_for_review_ootb(texts, model)[0]
     else:
+        streamlit.info("Loading Neural Network Model")
         model = load_model(RELATIVE_RESOURCE_DIR + "sequential-model.keras")
+        streamlit.info("Model loaded")
         return get_sentiment_for_review_nn(texts, model)[0]
